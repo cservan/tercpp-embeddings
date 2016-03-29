@@ -16,7 +16,7 @@ You have to install firstly the multivec library : https://github.com/eske/multi
 ## Acknowledgement 
 
 Copyright 2010-2013, Christophe Servan, LIUM, University of Le Mans, France <br />
-Copyright 2015, Christophe Servan, GETALP-LIG, University of Grenoble, France
+Copyright 2015-2016, Christophe Servan, GETALP-LIG, University of Grenoble, France
 
 Contact: christophe.servan@gmail.com
 
