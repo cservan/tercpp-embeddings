@@ -15,12 +15,15 @@ You have to install firstly the multivec library : https://github.com/eske/multi
 
 ## Acknowledgement 
 
+This toolkit is part of the project KEHATH (https://kehath.imag.fr/) funded by the French National Research Agency.
+
+
 Copyright 2010-2013, Christophe Servan, LIUM, University of Le Mans, France <br />
 Copyright 2015-2016, Christophe Servan, GETALP-LIG, University of Grenoble, France
 
 Contact: christophe.servan@gmail.com
 
-
+## Citation
 To reference tercpp in your publications, please cite this article:
 
 @article{servanPBML2011,
