@@ -15,10 +15,12 @@ You have to install firstly the multivec library : https://github.com/eske/multi
 
 ## Acknowledgement 
 
-This toolkit is part of the project KEHATH (https://kehath.imag.fr/) funded by the French National Research Agency.
-
-
+This toolkit was partially supported under the G program of the Defense Advanced
+Research Projects Agency, Contract No. HR0011-06-C-0022, and by the European
+Commission under the project EMP.<br />
 Copyright 2010-2013, Christophe Servan, LIUM, University of Le Mans, France <br />
+
+This toolkit is part of the project KEHATH (https://kehath.imag.fr/) funded by the French National Research Agency.<br />
 Copyright 2015-2016, Christophe Servan, GETALP-LIG, University of Grenoble, France
 
 Contact: christophe.servan@gmail.com
