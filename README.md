@@ -16,9 +16,12 @@ You have to install firstly the multivec library : https://github.com/eske/multi
 ## Example
 
 WER-E:</BR>
-		tercpp --WER  --noTxtIds -r reference.txt -h hypothesis.txt -w2v binary_embeddings_model.fr 
+
+		tercpp --WER  --noTxtIds -r reference.txt -h hypothesis.txt -w2v binary_embeddings_model.fr</br>
+
 WER-S:</BR>
-		tercpp --WER  --noTxtIds -r reference.txt -h hypothesis.txt -w2v binary_embeddings_model.fr --deeper
+
+		tercpp --WER  --noTxtIds -r reference.txt -h hypothesis.txt -w2v binary_embeddings_model.fr --deeper</br>
 
 
 ## Acknowledgement 
