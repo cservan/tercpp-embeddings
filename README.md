@@ -17,22 +17,33 @@ You have to install firstly the multivec library : https://github.com/eske/multi
 
 WER-E:</BR>
 with multivec binary models:
+
 		tercpp-embeddings --WER  --noTxtIds -r reference.txt -h hypothesis.txt -emb binary_embeddings_model.fr
+
 with multivec text models:
+
 		tercpp-embeddings --WER  --noTxtIds -r reference.txt -h hypothesis.txt -embtxt text_embeddings_model.fr
+
 with word2vec binary models:
+
 		tercpp-embeddings --WER  --noTxtIds -r reference.txt -h hypothesis.txt -w2v binary_embeddings_model.fr
 
 WER-S:</BR>
 with multivec binary models:
+
 		tercpp-embeddings --WER  --noTxtIds -r reference.txt -h hypothesis.txt -emb binary_embeddings_model.fr --deeper
+		
 with multivec text models:
+
 		tercpp-embeddings --WER  --noTxtIds -r reference.txt -h hypothesis.txt -embtxt text_embeddings_model.fr --deeper
+		
 with word2vec binary models:
+
 		tercpp-embeddings --WER  --noTxtIds -r reference.txt -h hypothesis.txt -w2v binary_embeddings_model.fr --deeper
 
 Text models are like:
-		83388 50
+
+		83388 50		
 		saluting -1.35397 0.586016 2.79672 -0.418376 -0.602821 1.21831 -1.93253 -1.04009 -0.370907 0.604416 0.336976 0.641255 0.334868 0.190173 0.0872742 0.883609 0.211205 0.80019 0.48248 0.824242 -0.346953 -1.07881 -0.521974 -0.111079 0.516307 1.86109 0.737816 0.225595 -0.282824 0.387372 0.523839 0.81536 1.03448 0.662487 0.315265 -2.33873 -0.0998709 -0.809018 -0.157693 -0.348118 0.733476 -0.694376 -0.411821 0.923461 -0.36941 0.576924 -0.00253894 -0.211869 0.738205 0.261968 
 		liga 0.240736 0.374699 -0.456721 0.0247067 -0.500141 -0.0672075 -1.15694 -1.043 0.321601 -0.072098 0.402517 0.124218 0.706794 -0.565653 -0.0125166 0.0923419 0.738372 -1.34922 0.00461746 0.480944 -0.157564 -0.685169 -0.379456 0.114373 -0.497862 0.201393 0.804827 -0.173226 -0.403769 -0.529033 0.764493 0.0586693 0.373357 0.780176 0.0847483 0.608413 0.695131 -2.18405 -0.337933 0.0852144 -0.315775 0.484913 -0.0181489 0.439723 0.878166 -0.447149 -0.926107 0.124669 0.258716 1.17472 
 		congressmen -2.69759 1.41468 1.14476 -2.2755 -0.324732 1.39088 -2.3428 3.7577 -1.63871 3.99818 1.87524 -2.47587 -0.0758982 -2.32292 -2.73987 1.70998 -1.05869 0.4186 -1.83306 -1.39962 -0.229668 -1.3621 0.61785 -0.712404 -0.570894 0.367588 -1.02264 1.85515 -0.0886673 -0.721675 -0.631928 -0.198751 -4.25625 0.131479 -0.33592 -0.565107 -0.926477 -3.46209 -4.15838 0.272748 0.925235 0.186114 1.2844 -1.43701 0.570687 -1.71726 0.88729 -1.34935 0.680968 2.594 
