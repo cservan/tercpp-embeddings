@@ -835,6 +835,7 @@ namespace Tools
 	to_return.subCost=p.subCost;
 	to_return.shiftCost=p.shiftCost;
 	to_return.deep=p.deep;
+	to_return.deeptxt=p.deeptxt;
 	to_return.deepcpp=p.deepcpp;
 	to_return.deeper=p.deeper;
 	to_return.threshold=p.threshold;
@@ -869,6 +870,7 @@ namespace Tools
         s << "subCost = " << p.subCost << endl;
         s << "shiftCost = " << p.shiftCost << endl;
         s << "deep = " << p.deep << endl;
+        s << "deeptxt = " << p.deeptxt << endl;
         s << "deepcpp = " << p.deepcpp << endl;
         s << "deeper = " << p.deeper << endl;
         s << "threshold = " << p.threshold << endl;

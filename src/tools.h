@@ -78,6 +78,7 @@ struct param
     bool deep;
     bool deepcpp;
     bool deeper;
+    bool deeptxt;
 };
 // param = { false, "","","","" };
 

@@ -70,7 +70,11 @@ namespace TERCpp
         evalParameters = Tools::copyParam ( p );
 	if (evalParameters.deep)
 	{
-	    m_distance = new word2vecdistance::distance(evalParameters.W2VModel);
+	    m_distance = new word2vecdistance::distance(evalParameters.W2VModel,0);
+	}
+	if (evalParameters.deeptxt)
+	{
+	    m_distance = new word2vecdistance::distance(evalParameters.W2VModel,1);
 	}
 	if (evalParameters.deepcpp)
 	{

@@ -145,13 +145,20 @@ void readCommandLineArguments ( unsigned int argc, char *argv[] , param & p)
         {
             p.W2VModel = infos;
 	    p.deep = true;
+	    p.deeptxt = false;
         }
-        else if ( s.compare ( "-w2vcpp" ) == 0 )
+        else if ( s.compare ( "-emb" ) == 0 )
         {
             p.W2VModelcpp = infos;
 	    p.deepcpp = true;
         }
-        else if ( s.compare ( "-biveccpp" ) == 0 )
+        else if ( s.compare ( "-embtxt" ) == 0 )
+        {
+            p.W2VModel = infos;
+	    p.deep = true;
+	    p.deeptxt = true;
+        }
+        else if ( s.compare ( "-embbivec" ) == 0 )
         {
             p.BivecModelcpp = infos;
 // 	    p.deepcpp = true;

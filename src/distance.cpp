@@ -20,170 +20,122 @@
  * Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  * **********************************/
 #include "distance.h"
+#include "tools.h"
 using namespace std;
 namespace word2vecdistance
 {
 
-  distance::distance(string filename)
+  distance::distance(string filename, int type)
   {
     strcpy(file_name, filename.c_str());
-    f = fopen(file_name, "rb");
-    if (f == NULL) 
+    if (type == 0)
     {
-      printf("Word2Vec Model file not found\n");
-      exit(-1);
+	// For Binary word2vec models 
+	f = fopen(file_name, "rb");
+	if (f == NULL) 
+	{
+	  printf("Word2Vec Model file not found\n");
+	  exit(-1);
+	}
+	fscanf(f, "%lld", &words);
+	fscanf(f, "%lld", &size);
+	vocab = (char *)malloc((long long)words * max_w * sizeof(char));
+	for (a = 0; a < N; a++) bestw[a] = (char *)malloc(max_size * sizeof(char));
+	M = (float *)malloc((long long)words * (long long)size * sizeof(float));
+    //     D = (float *)malloc((long long)words * (long long)words * sizeof(float));
+    //     L = (float *)malloc((long long)words * sizeof(float));
+	if (M == NULL) 
+	{
+	  printf("Cannot allocate memory: %lld MB    %lld  %lld\n", (long long)words * size * sizeof(float) / 1048576, words, size);
+	  exit(-1);
+	}
+	cerr << "Loading word2vec model...";
+    //     printf("Allocation of memory: %lld MB    %lld  %lld\n", (long long)words * size * sizeof(float) / 1048576, words, size);
+	for (b = 0; b < words; b++) 
+	{
+	  a = 0;
+	  while (1) 
+	  {
+	    vocab[b * max_w + a] = fgetc(f);
+	    if (feof(f) || (vocab[b * max_w + a] == ' ')) break;
+	    if ((a < max_w) && (vocab[b * max_w + a] != '\n')) a++;
+	  }
+	  vocab[b * max_w + a] = 0;
+	  for (a = 0; a < size; a++) fread(&M[a + b * size], sizeof(float), 1, f);
+	  len = 0;
+	  for (a = 0; a < size; a++) len += M[a + b * size] * M[a + b * size];
+	  len = sqrt(len);
+	  for (a = 0; a < size; a++) M[a + b * size] /= len;
+	}
+	fclose(f);
     }
-    fscanf(f, "%lld", &words);
-    fscanf(f, "%lld", &size);
-    vocab = (char *)malloc((long long)words * max_w * sizeof(char));
-    for (a = 0; a < N; a++) bestw[a] = (char *)malloc(max_size * sizeof(char));
-    M = (float *)malloc((long long)words * (long long)size * sizeof(float));
-//     D = (float *)malloc((long long)words * (long long)words * sizeof(float));
-//     L = (float *)malloc((long long)words * sizeof(float));
-    if (M == NULL) 
+    else
     {
-      printf("Cannot allocate memory: %lld MB    %lld  %lld\n", (long long)words * size * sizeof(float) / 1048576, words, size);
-      exit(-1);
+	if (type == 1)
+	{
+	    ifstream f;
+	    f.open(file_name);
+	    string line;
+	    if (f == NULL) 
+	    {
+	      printf("Embeddings Model file (in text format) not found\n");
+	      exit(-1);
+	    }
+	    getline(f,line);
+	    sscanf(line.c_str(), "%lld %lld", &words, &size);
+	    vocab = (char *)malloc((long long)words * max_w * sizeof(char));
+	    for (a = 0; a < N; a++) bestw[a] = (char *)malloc(max_size * sizeof(char));
+	    M = (float *)malloc((long long)words * (long long)size * sizeof(float));
+	    if (M == NULL) 
+	    {
+	      printf("Cannot allocate memory: %lld MB    %lld  %lld\n", (long long)words * size * sizeof(float) / 1048576, words, size);
+	      exit(-1);
+	    }
+	    cerr << "Loading embeddings model in text format...";
+	    for (b = 0; b < words; b++) 
+	    {
+	      	a = 0;
+	      
+	      	while (1) 
+	      	{
+			vocab[b * max_w + a] = f.get();
+			if ((vocab[b * max_w + a] == ' ')) break;
+			if ((a < max_w) && (vocab[b * max_w + a] != '\n')) a++;
+	      	}
+	      	vocab[b * max_w + a] = 0;
+	      	for (a = 0; a < size; a++) 
+		{
+			int c =0;
+			char l_float[20];
+	                while (1)
+	                {
+        	                l_float[c] = f.get();
+                	        if ((l_float[c] == ' ')) break;
+                        	if ((c < 20) && (l_float[c] != '\n')) c++;
+                	}
+			l_float[c]=0;
+			M[a + b * size]=atof(l_float);
+		}
+//fread(&M[a + b * size], sizeof(float), 1, f);
+	      len = 0;
+	      for (a = 0; a < size; a++) len += M[a + b * size] * M[a + b * size];
+	      len = sqrt(len);
+	      for (a = 0; a < size; a++) M[a + b * size] /= len;
+	    }
+	    f.close();
+	    
+	    
+	}
+	
     }
-    cerr << "Loading word2vec model...";
-//     printf("Allocation of memory: %lld MB    %lld  %lld\n", (long long)words * size * sizeof(float) / 1048576, words, size);
-    for (b = 0; b < words; b++) 
-    {
-      a = 0;
-      while (1) 
-      {
-	vocab[b * max_w + a] = fgetc(f);
-	if (feof(f) || (vocab[b * max_w + a] == ' ')) break;
-	if ((a < max_w) && (vocab[b * max_w + a] != '\n')) a++;
-      }
-      vocab[b * max_w + a] = 0;
-      for (a = 0; a < size; a++) fread(&M[a + b * size], sizeof(float), 1, f);
-      len = 0;
-      for (a = 0; a < size; a++) len += M[a + b * size] * M[a + b * size];
-      len = sqrt(len);
-      for (a = 0; a < size; a++) M[a + b * size] /= len;
-    }
-    fclose(f);
-    
-//     mvocab = new multimap < string, int >;
-//     for (b = 0; b < words; b++) 
-//     {
-// // 	pair < string, int > p(string(&vocab[b * max_w]),b);
-//  	mvocab->insert(make_pair < string, int > (string(&vocab[b * max_w]),b));
-//     }
-    
-//     for (b = 0; b < words; b++) 
-//     {
-// 	len = 0;
-// 	for (a = 0; a < size; a++) len += M[a + b * size] * M[a + b * size];
-// 	L[b] = sqrt(len);
-//     }
-//     for (b = 0; b < words; b++) 
-//     {
-// 	for (c = 0; c <= b; c++) 
-// 	{
-// 	    D[b*c] = 0.0;
-// 	    for (a = 0; a < size; a++) 
-// 	    {
-// 		D[b*c] += (M[a + b * size] / L[b]) * (M[a + c * size] / L[c]);
-// 	    }
-// 	}
-//     }
 
-//     cerr << mvocab->size() <<endl;
+    
     fillHash();
     cerr << "finished!" <<endl;
   }
 
-/*
-  vector< pair< string, float > > distance::recherche(string s)
-  {
-    vector< pair< string, float > > to_return;
-    float vec[max_size];
-    for (a = 0; a < N; a++) bestd[a] = 0;
-    for (a = 0; a < N; a++) bestw[a][0] = 0;
-//     printf("Enter word or sentence (EXIT to break): ");
-    a = 0;
-//     while (1) {
-//       st1[a] = fgetc(stdin);
-//       if ((st1[a] == '\n') || (a >= max_size - 1)) {
-//         st1[a] = 0;
-//         break;
-//       }
-//       a++;
-//     }
-    char st1[max_size];
-    strcpy(st1, s.c_str());
-//     st1 = s.c_str();
-//     if (!strcmp(st1, "EXIT")) break;
-    cn = 0;
-    b = 0;
-    c = 0;
-    while (1) {
-      st[cn][b] = st1[c];
-      b++;
-      c++;
-      st[cn][b] = 0;
-      if (st1[c] == 0) break;
-      if (st1[c] == ' ') {
-        cn++;
-        b = 0;
-        c++;
-      }
-    }
-    cn++;
-    for (a = 0; a < cn; a++) {
-      for (b = 0; b < words; b++) if (!strcmp(&vocab[b * max_w], st[a])) break;
-      if (b == words) b = -1;
-      bi[a] = b;
-//       printf("\nWord: %s  Position in vocabulary: %lld\n", st[a], bi[a]);
-      if (b == -1) {
-// 	printf("%s: Out of dictionary word!\n",st[a]);
-        return to_return;
-      }
-    }
-    if (b == -1) return to_return;
-//     printf("\n                                              Word       Cosine distance\n------------------------------------------------------------------------\n");
-    for (a = 0; a < size; a++) vec[a] = 0;
-    for (b = 0; b < cn; b++) {
-      if (bi[b] == -1) continue;
-      for (a = 0; a < size; a++) vec[a] += M[a + bi[b] * size];
-    }
-    len = 0;
-    for (a = 0; a < size; a++) len += vec[a] * vec[a];
-    len = sqrt(len);
-    for (a = 0; a < size; a++) vec[a] /= len;
-    for (a = 0; a < N; a++) bestd[a] = -1;
-    for (a = 0; a < N; a++) bestw[a][0] = 0;
-    for (c = 0; c < words; c++) {
-      a = 0;
-      for (b = 0; b < cn; b++) if (bi[b] == c) a = 1;
-      if (a == 1) continue;
-      dist = 0;
-      for (a = 0; a < size; a++) dist += vec[a] * M[a + c * size];
-      for (a = 0; a < N; a++) {
-        if (dist > bestd[a]) {
-          for (d = N - 1; d > a; d--) {
-            bestd[d] = bestd[d - 1];
-            strcpy(bestw[d], bestw[d - 1]);
-          }
-          bestd[a] = dist;
-          strcpy(bestw[a], &vocab[c * max_w]);
-          break;
-        }
-      }
-    }
-    
-//       for (a = 0; a < N && a < 10 ; a++) 
-// 	printf("%50s\t\t%f\n", bestw[a], bestd[a]);
-    for (a = 0; a < N; a++) 
-    {
-      pair<string,float> l_p( string(bestw[a]), bestd[a]);
-//       printf("%50s\t\t%f\n", bestw[a], bestd[a]);
-      to_return.push_back(l_p);
-    }
-    return to_return;
-  }*/
+
+  
   float distance::getSimilarity(string s1, string s2)
   {
     float vec1[max_size];

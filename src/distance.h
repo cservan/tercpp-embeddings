@@ -67,7 +67,7 @@ class distance
       
     public:
 //       multimap < string, int > * mvocab;
-      distance(string filename);
+      distance(string filename, int type);
       vector < pair < string, float > > recherche(string s);
       float getSimilarity(string s1,string s2);
       float getSimilarityTest(string &s1,string &s2);
