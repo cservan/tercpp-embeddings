@@ -1,6 +1,6 @@
 #tercpp-embeddings
 
-tercpp-embeddings: an open-source Translation Edit Rate (TER) scorer tool for Machine Translation and Word Error Rate (WER) tool for Automatic Speech Recognition using Word Embeddings.
+tercpp-embeddings: an open-source Translation Edit Rate (TER) scorer tool for Machine Translation and Word Error Rate (WER) tool for Automatic Speech Recognition using Word Embeddings (WER-E and WER-S). 
 
 ## Subdirectories:
 
@@ -22,6 +22,11 @@ WER-E:</BR>
 WER-S:</BR>
 
 		tercpp --WER  --noTxtIds -r reference.txt -h hypothesis.txt -w2v binary_embeddings_model.fr --deeper
+
+
+## Data
+
+All the data used for our experiments in our paper accepted to INTERSPEECH 2016 are available here: https://github.com/besacier/WCE-SLT-LIG/tree/master/IS2016
 
 
 ## Acknowledgement 
