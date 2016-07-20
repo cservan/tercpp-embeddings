@@ -13,20 +13,35 @@ tercpp-embeddings: an open-source Translation Edit Rate (TER) scorer tool for Ma
 See INSTALL for build instructions.
 You have to install firstly the multivec library : https://github.com/eske/multivec/
 
-## Acknowledgement 
+## Example
 
-This toolkit was partially supported under the G program of the Defense Advanced
-Research Projects Agency, Contract No. HR0011-06-C-0022, and by the European
-Commission under the project EMP.<br />
-Copyright 2010-2013, Christophe Servan, LIUM, University of Le Mans, France <br />
+WER-E:
+		tercpp --WER  --noTxtIds -r reference.txt -h hypothesis.txt -w2v binary_embeddings_model.fr 
+WER-S:
+		tercpp --WER  --noTxtIds -r reference.txt -h hypothesis.txt -w2v binary_embeddings_model.fr --deeper
+
+
+## Acknowledgement 
 
 This toolkit is part of the project KEHATH (https://kehath.imag.fr/) funded by the French National Research Agency.<br />
 Copyright 2015-2016, Christophe Servan, GETALP-LIG, University of Grenoble, France
 
+This toolkit was partially supported under the GALEprogram of the Defense Advanced
+Research Projects Agency, Contract No. HR0011-06-C-0022, and by the European
+Commission under the project EuroMatrixPlus <BR />
+Copyright 2010-2013, Christophe Servan, LIUM, University of Le Mans, France <br />
+
 Contact: christophe.servan@gmail.com
 
 ## Citation
-To reference tercpp in your publications, please cite this article:
+To reference tercpp in your publications, please cite these article:
+
+@InProceedings{LeIS2016,
+author = {Ngoc-Tien Le and Christophe Servan and Benjamin Lecouteux and Laurent Besacier},
+title = {Better Evaluation of ASR in Speech Translation Context Using Word Embeddings},
+booktitle = {INTERSPEECH 2016},
+year = 2016
+}
 
 @article{servanPBML2011,
   title={Optimising multiple metrics with mert},
@@ -38,7 +53,6 @@ To reference tercpp in your publications, please cite this article:
   year={2011},
   publisher={Versita}
 }
-
 
 The TER code is based on the Snover's algorithm provided at http://www.cs.umd.edu/~snover/tercom
 
