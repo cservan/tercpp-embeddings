@@ -54,7 +54,7 @@ SET(tercpp_SRCS
 )
 
 add_executable(tercpp-embeddings ${tercpp_SRCS})
-target_link_libraries(tercpp.0.9.2-embeddings multivec boost_regex boost_system boost_filesystem boost_iostreams boost_thread boost_serialization rt)
+target_link_libraries(tercpp-embeddings multivec boost_regex boost_system boost_filesystem boost_iostreams boost_thread boost_serialization rt)
 
-install(TARGETS tercpp.0.9.2-bivec DESTINATION bin)
+install(TARGETS tercpp-embeddings DESTINATION bin)
 
