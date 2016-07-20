@@ -4,6 +4,7 @@ tercpp-embeddings: an open-source Translation Edit Rate (TER) scorer tool for Ma
 
 ## Subdirectories:
 
+		papers/			research papers 
 		src/			source code of library needed
 		test/			source code for main source.
 
