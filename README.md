@@ -15,7 +15,7 @@ You have to install firstly the multivec library : https://github.com/eske/multi
 
 ## Example
 
-WER-E:</BR>
+### WER-E:
 with multivec binary models:
 
 		tercpp-embeddings --WER  --noTxtIds -r reference.txt -h hypothesis.txt -emb binary_embeddings_model.fr
@@ -28,7 +28,7 @@ with word2vec binary models:
 
 		tercpp-embeddings --WER  --noTxtIds -r reference.txt -h hypothesis.txt -w2v binary_embeddings_model.fr
 
-WER-S:</BR>
+### WER-S:
 with multivec binary models:
 
 		tercpp-embeddings --WER  --noTxtIds -r reference.txt -h hypothesis.txt -emb binary_embeddings_model.fr --deeper
@@ -41,6 +41,7 @@ with word2vec binary models:
 
 		tercpp-embeddings --WER  --noTxtIds -r reference.txt -h hypothesis.txt -w2v binary_embeddings_model.fr --deeper
 
+### Text models
 Text models are like word2vec text models:
 
 		83388 50		
