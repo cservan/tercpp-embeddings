@@ -76,7 +76,7 @@ namespace word2vecdistance
 	    ifstream f;
 	    f.open(file_name);
 	    string line;
-	    if (f == NULL) 
+	    if (f.fail()) 
 	    {
 	      printf("Embeddings Model file (in text format) not found\n");
 	      exit(-1);

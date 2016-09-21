@@ -78,7 +78,7 @@ namespace TERCpp
 	}
 	if (evalParameters.deepcpp)
 	{
-	    m_distancecpp = new MonolingualModel();
+	    m_distancecpp = new MonolingualModel(new Config());
 	    m_distancecpp->load(evalParameters.W2VModelcpp);
 	}
 // 	referencesTxt=new multiTxtDocument();
