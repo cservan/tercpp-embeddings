@@ -34,11 +34,13 @@ add_definitions(-DIBPP_LINUX -DIBPP_GCC)
 #link_directories(/DEV/Tools/boost_1_61_0/lib)
 #link_directories(${USERHOME}/Tools/myLibs/icu/lib)
 #include_directories(${USERHOME}/Tools/myLibs/icu/include)
-include_directories(/home/cservan/Tools/Sources/multivec/multivec/)
-link_directories(/home/cservan/Tools/Sources/multivec/lib)
+include_directories(vendor/multivec/multivec/)
+add_subdirectory(vendor/multivec/)
+
+# link_directories(/home/cservan/Tools/Sources/multivec/)
 #SET(CMAKE_CXX_FLAGS "-Wunused-local-typedefs")
 #add definitions, compiler switches, etc.
-ADD_DEFINITIONS(-Wall -O2 -static -std=c++0x -Wunused-local-typedefs )
+ADD_DEFINITIONS(-Wall -O2 -static -std=c++0x )
 
 #list all source files here
 add_subdirectory(src)

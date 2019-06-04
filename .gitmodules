@@ -1,0 +1,3 @@
+[submodule "vendor/multivec"]
+	path = vendor/multivec
+	url = https://github.com/eske/multivec.git

@@ -53,6 +53,7 @@ namespace TERCpp
 	  stringstream s;
 	  s << m_best_shift->toString() << endl;
 	  s << m_best_align->toString() << endl;
+          return s.str();
 //	    s << (*m_empty) << endl;
     }
     bool bestShiftStruct::getEmpty()
