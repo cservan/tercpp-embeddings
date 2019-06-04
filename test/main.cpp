@@ -85,9 +85,11 @@ void readCommandLineArguments ( unsigned int argc, char *argv[] , param & p)
     p.BivecModelcpp = "";
     p.deep = false;
     p.deepcpp = false;
+    p.deeptxt = false;
     p.deeper = false;
     p.threshold = 0.9;
     p.threads = 1;
+    
 
     string s ( "" );
     string infos ("");
