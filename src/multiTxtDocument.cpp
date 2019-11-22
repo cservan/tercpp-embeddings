@@ -151,13 +151,22 @@ namespace TERCpp
                 }
                 else
                 {
-		    if ((int)line.rfind ( "(" )==-1)
+                    int l_par_pos=(int)line.rfind ( "(" );
+		    if (l_par_pos==-1)
 		    {
 			cerr << "ERROR : multiTxtDocument::loadFile : Id not found, maybe you should use the --noTxtIds Option ? " << endl;
 			exit ( 0 );
 		    }
-                    l_key = line.substr ( line.rfind ( "(" ), line.size() - 1 );
-                    line_mod = line.substr ( 0, line.rfind ( "(" ) - 1 );
+		    if (l_par_pos==0)
+		    {
+                        l_key = line;
+                        line_mod="";
+                    }
+                    else
+                    {
+                        l_key = line.substr ( l_par_pos, (int)line.rfind ( ")" ));
+                        line_mod = line.substr ( 0, l_par_pos - 1 );
+                    }
                 }
                 if ( multiTxtDocumentParams.debugMode )
                 {

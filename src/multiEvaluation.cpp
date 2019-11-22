@@ -432,11 +432,6 @@ namespace TERCpp
     // 	    terAlignment l_result = l_evalTER->TER ( segHypIt->getContent(), l_segRef->getContent());
 		delete l_evalTER;
 		l_result.averageWords = l_segRef->getAverageLength();
-		if (l_result.averageWords==0.0)
-		{
-		    cerr << "ERROR : tercpp : multiEvaluation::evaluate : averageWords is equal to zero" <<endl;
-		    exit(0);
-		}
 		l_segRef->setAlignment ( l_result );
 		if (evalParameters.debugMode)
 		{

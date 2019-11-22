@@ -394,7 +394,7 @@ namespace Tools
             {
                 if ( ( *sIt ) == ( *sTok ) )
                 {
-                    to_return.push_back ( to_push );
+                    if ( ( int ) to_push.length() > 0 ) to_return.push_back ( to_push );
                     to_push = "";
                     pushed = true;
                 }
@@ -404,7 +404,8 @@ namespace Tools
                 to_push.push_back ( ( *sIt ) );
             }
         }
-        to_return.push_back ( to_push );
+        if ( ( int ) to_push.length() > 0 )
+            to_return.push_back ( to_push );
         return to_return;
     }
     vector<int> stringToVectorInt ( string s, string tok )

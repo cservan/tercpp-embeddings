@@ -32,6 +32,5 @@ RUN mkdir -p build/ && cd build \
 
 RUN groupadd -r tercpp && useradd --system -s /bin/bash -g tercpp tercpp
 
-#USER qnlp 
+USER tercpp
 
-#ENTRYPOINT ["/usr/local/bin/katanoisi"]
